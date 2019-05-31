@@ -25,7 +25,7 @@ class ProductKindController extends Controller
      */
     public function create(Request $request)
     {
-        $cat = ProductKind::find($request -> id);
+        $cat = ProductKind::find($request -> updateId);
         return view("add_category", ['cat' => $cat]);
     }
 

@@ -3,19 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\ProductKind;
+use Illuminate\Support\Collection;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -23,6 +16,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $cats = ProductKind::get();
+        $map = collect();
+        foreach($cats as $c) {
+          $prods = Product::where('catId', '=', $c->id)->simplePaginate(5);
+          foreach($prods as $p) {
+              foreach($cats as $c) {
+                  if ($p->catId == $c->id) {
+                      $p->catId = $c->name;
+                      break;
+                  }
+              }
+          }
+          $map->put($c->name, $prods);
+        }
+
+        return view('home', ["cats" => $cats, "map" => $map]);
     }
 }

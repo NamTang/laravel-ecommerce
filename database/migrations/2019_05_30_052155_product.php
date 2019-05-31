@@ -18,9 +18,9 @@ class Product extends Migration
           $table->string('name');
           $table->integer('quantity');
           $table->integer('price');
-          $table->string('description');
+          $table->longText('description');
           $table->string('picture');
-          $table->string('shortDescription');
+          $table->longText('shortDescription')->nullable();
           $table->bigInteger('catId')->unsigned();
           $table->foreign('catId') -> references('id') -> on ('product_kind');
       });

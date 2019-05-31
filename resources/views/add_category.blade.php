@@ -18,14 +18,14 @@
 
         @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Thêm thành công</strong>.
+            <strong>{{$cat != null ? 'Updated' : 'Created'}}</strong>.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         @elseif(session('success'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Thêm Thất bại</strong>.
+            <strong>Opps something wrong happened!</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -37,7 +37,7 @@
                 <input type="text" name="id" hidden value="{{$cat != null ? $cat -> id : ''}}" />
                 <div class="row mt-md-2">
                     <div class="col-md-2">
-                        <label for="name">Tên sản phẩm</label>
+                        <label for="name">Category Name</label>
                     </div>
                     <div class="col-md-10">
                         <input type="text" name="name" class="form-control" value="{{$cat != null ? $cat -> name : ''}}" required />
