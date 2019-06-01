@@ -153,9 +153,9 @@
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="{{route('home')}}">Home</a></li>
+                <li class="{{ Request::url() == route('home') ? 'active' : ''}}"><a href="{{route('home')}}">Home</a></li>
                 @foreach (App\ProductKind::get() as $cat)
-                <li><a href="{{route('show_store_by_category', $cat->id)}}">{{$cat->name}}</a></li>
+                <li class="{{ Request::url() == route('show_store_by_category', $cat->id) ? 'active' : ''}}"><a href="{{route('show_store_by_category', $cat->id)}}">{{$cat->name}}</a></li>
                 @endforeach
             </ul>
             <!-- /NAV -->
