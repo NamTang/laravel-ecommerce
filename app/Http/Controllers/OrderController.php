@@ -14,6 +14,25 @@ class OrderController extends Controller
         return view("checkout");
     }
 
+    public function userOrder()
+    {
+        $orders;
+        if (Auth::user()) {
+            $orders = Order::where('user_id', '=', Auth::user()->id)->get();
+            foreach ($orders as $key => $value) {
+                $total = 0;
+                $value->product_name = $value->products[0]->name;
+                foreach ($value->products as $prod) {
+                    $total = $total +  ($prod->price * $prod->pivot->quantity);
+                }
+
+                $value->total = $total;
+            }
+        }
+
+        return view('user_order', ['orders' => $orders]);
+    }
+
     public function store(Request $request)
     {
         $session_id;

@@ -11,6 +11,8 @@
 |
 */
 
+
+// All user routes
 Route::get('/', 'HomeController@index')->name('root');
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -35,7 +37,16 @@ Route::group(['prefix' => 'cart'], function () {
     Route::post('/remove/{id}', 'CartController@destroy')->name('cart_remove');
     Route::post('/update', 'CartController@update')->name('cart_update');
 });
+// End All user routes
 
+// Logged in user routes
+Route::group(['prefix' => 'orders', 'middleware' => 'auth'], function () {
+    Route::get('/', 'OrderController@userOrder')->name('user_order');
+    Route::get('/{id}', 'OrderController@oderDetail')->name('order_detail');
+});
+// End logged in user routes
+
+// Admin routes
 Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckPermission'], function () {
     Route::get('/', 'DashBoardController@index')->name('dashboard');
 
@@ -53,3 +64,4 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckPermission'], funct
         Route::post('/remove', 'ProductKindController@destroy')->name('remove_category');
     });
 });
+// End admin routes

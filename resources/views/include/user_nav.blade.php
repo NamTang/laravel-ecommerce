@@ -25,6 +25,9 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" style="text-align: center;" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" style="color: black; display: block; margin-bottom: 5px; margin-top: 5px;" href="{{ route('user_order') }}">
+                            My Orders
+                        </a>
                         <a class="dropdown-item" style="color: black;" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
@@ -92,51 +95,53 @@
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="{{route('show_product', $cart->id)}}">{{$cart->name}}</a></h3>
-                                            <h4 class="product-price"><span class="qty"> {{$cart->quantity}}</span> {{$cart->price * $cart->quantity}}</h4> </div> <form action="{{route('cart_remove', $cart->catId)}}" method="post">
-                                                    @csrf
-                                                    <button class="delete" type="submit"><i class="fa fa-close"></i></button>
-                                                    </form>
+                                            <h4 class="product-price"><span class="qty"> {{$cart->quantity}}</span> {{$cart->price * $cart->quantity}}</h4>
                                         </div>
-                                        @empty
-                                        <div></div>
-                                        @endforelse
+                                        <form action="{{route('cart_remove', $cart->catId)}}" method="post">
+                                            @csrf
+                                            <button class="delete" type="submit"><i class="fa fa-close"></i></button>
+                                        </form>
                                     </div>
-                                    <div class="cart-summary">
-                                        <small>{{$provider::show()->count()}} Item(s) selected</small>
-                                        @php
-                                        $total = 0;
-                                        foreach($provider::show() as $cart) {
-                                        $total = ($cart->price * $cart->quantity);
-                                        }
-                                        echo "<h5>SUBTOTAL: ".$total."</h5>";
-                                        @endphp
+                                    @empty
+                                    <div></div>
+                                    @endforelse
+                                </div>
+                                <div class="cart-summary">
+                                    <small>{{$provider::show()->count()}} Item(s) selected</small>
+                                    @php
+                                    $total = 0;
+                                    foreach($provider::show() as $cart) {
+                                    $total = ($cart->price * $cart->quantity);
+                                    }
+                                    echo "<h5>SUBTOTAL: ".$total."</h5>";
+                                    @endphp
 
-                                    </div>
-                                    <div class="cart-btns">
-                                        <a href="{{route('cart')}}">View Cart</a>
-                                        <a href="{{route('checkout')}}">Checkout <i class="fa fa-arrow-circle-right"></i></a>
-                                    </div>
+                                </div>
+                                <div class="cart-btns">
+                                    <a href="{{route('cart')}}">View Cart</a>
+                                    <a href="{{route('checkout')}}">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
-                            <!-- /Cart -->
-
-                            <!-- Menu Toogle -->
-                            <div class="menu-toggle">
-                                <a href="#">
-                                    <i class="fa fa-bars"></i>
-                                    <span>Menu</span>
-                                </a>
-                            </div>
-                            <!-- /Menu Toogle -->
                         </div>
+                        <!-- /Cart -->
+
+                        <!-- Menu Toogle -->
+                        <div class="menu-toggle">
+                            <a href="#">
+                                <i class="fa fa-bars"></i>
+                                <span>Menu</span>
+                            </a>
+                        </div>
+                        <!-- /Menu Toogle -->
                     </div>
-                    <!-- /ACCOUNT -->
                 </div>
-                <!-- row -->
+                <!-- /ACCOUNT -->
             </div>
-            <!-- container -->
+            <!-- row -->
         </div>
-        <!-- /MAIN HEADER -->
+        <!-- container -->
+    </div>
+    <!-- /MAIN HEADER -->
 </header>
 <!-- /HEADER -->
 

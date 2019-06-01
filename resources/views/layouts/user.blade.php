@@ -26,12 +26,6 @@
     <link type="text/css" rel="stylesheet" href="{{asset('/electro/css/style.css')}}" />
 
     <style media="screen">
-        .tiki-cart .wrap .empty-cart {
-            text-align: center;
-            background-color: #fff;
-            padding: 0 30px 30px;
-            border-radius: 4px;
-        }
         .page-link {
           z-index: 99999;
         }
