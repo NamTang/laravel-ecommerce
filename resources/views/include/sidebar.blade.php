@@ -7,6 +7,9 @@
             <a href="index.html">St</a>
         </div>
         <ul class="sidebar-menu">
+            <li class="nav-item">
+                <a href="{{route('home')}}" class="nav-link"><i class="fas fa-fire"></i><span>Home</span></a>
+            </li>
             <li class="menu-header">Orders</li>
             <li class="nav-item">
                 <a href="{{route('dashboard')}}" class="nav-link"><i class="fas fa-fire"></i><span>List</span></a>

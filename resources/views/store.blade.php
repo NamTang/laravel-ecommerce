@@ -13,7 +13,7 @@
                 <div class="row">
                     @forelse($prods as $p)
                     <!-- product -->
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-3 col-xs-6">
                         <div class="product">
                             <div class="product-img">
                                 <img src="{{$p->picture}}" alt="">
