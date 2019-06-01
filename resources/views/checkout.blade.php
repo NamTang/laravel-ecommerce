@@ -43,7 +43,7 @@
                             @forelse($provider::show() as $cart)
                             <div class="order-col">
                                 <div><strong>{{$cart->quantity}}x</strong> {{$cart->name}}</div>
-                                <div>{{$cart->price}}</div>
+                                <div>{{number_format($cart->price)}}</div>
                             </div>
                             @empty
                             <div></div>
@@ -60,7 +60,7 @@
                                     foreach($provider::show() as $cart) {
                                     $total = ($cart->price * $cart->quantity);
                                     }
-                                    echo $total;
+                                    echo number_format($total);
                                     @endphp
                                 </strong>
                             </div>

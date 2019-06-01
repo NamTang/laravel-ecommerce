@@ -207,7 +207,7 @@
                     <div class="product-body">
                         <p class="product-category">{{$p->catId}}</p>
                         <h3 class="product-name"><a href="{{route('show_product', $p->id)}}">{{$p->name}}</a></h3>
-                        <h4 class="product-price">{{$p->price}}</h4>
+                        <h4 class="product-price">{{number_format($p->price)}}</h4>
                     </div>
                     <div class="add-to-cart">
                         <form action="{{route('cart_add', $p->id)}}" method="post">

@@ -49,7 +49,7 @@
                     <td><a href="{{route('add_product')}}?updateId={{$value -> id}}">{{$value -> name}}</a></td>
                     <td>{{$value -> description}}</td>
                     <td>{{$value -> quantity}}</td>
-                    <td>{{$value -> price}}</td>
+                    <td>{{number_format($value -> price)}}</td>
                     <td>{{$value -> catId}}</td>
                     <td><img class="rounded d-block" style="height: 100px;" src="{{$value -> picture}}"></td>
                     <td><form method="post" action="{{route('remove_product')}}">

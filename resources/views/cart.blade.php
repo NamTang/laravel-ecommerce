@@ -64,14 +64,14 @@
                                             <h6 style="display: inline">{{$cart->name}}</h6>
                                         </a>
                                     </td>
-                                    <td class="price"><span>{{$cart->price}}</span></td>
+                                    <td class="price"><span>{{number_format($cart->price)}}</span></td>
                                     <td class="qty">
                                         <div class="quantity">
                                             <input type="number" name="cartId[]" value="{{$cart->catId}}" hidden>
                                             <input type="number" class="qty-text" step="1" min="1" max="99" name="quantity[]" value="{{$cart->quantity}}">
                                         </div>
                                     </td>
-                                    <td class="total_price"><span>{{$cart->quantity * $cart->price}}</span></td>
+                                    <td class="total_price"><span>{{number_format($cart->quantity * $cart->price)}}</span></td>
                                 </tr>
                                 @empty
                                 <div class="col-xs-12 text-center">

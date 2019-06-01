@@ -35,7 +35,7 @@ class CartController extends Controller
     public function add($product_id, Request $request)
     {
         // For Identification Purpose
-        $session_id = empty(Auth::user()) ? session()->get('_token') : Auth::user()->id;
+        $session_id = empty(Auth::user()) ? session()->get('_token') : (string) Auth::user()->id;
 
         // Get Product Detils by ID
         $product = Product::where('id', $product_id)->first();
@@ -86,7 +86,7 @@ class CartController extends Controller
      */
     public static function show()
     {
-        $session_id = empty(Auth::user()) ? session()->get('_token') : Auth::user()->id;
+        $session_id = empty(Auth::user()) ? session()->get('_token') : (string) Auth::user()->id;
         $carts = Cart::where('session_id', '=', $session_id)->get();
         $prods = collect();
         foreach ($carts as $value) {

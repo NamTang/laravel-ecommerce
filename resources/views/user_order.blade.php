@@ -21,7 +21,7 @@
                     <th scope='row'><a href="{{route('order_detail', $value->id)}}">{{$value->id}}</a></th>
                     <td>{{$value -> created_at}}</td>
                     <td>{{$value -> product_name}}</td>
-                    <td>{{$value -> total}}</td>
+                    <td>{{number_format($value -> total)}}</td>
                 </tr>
                 @endforeach
             </tbody>

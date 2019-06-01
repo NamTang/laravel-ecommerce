@@ -95,7 +95,7 @@
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="{{route('show_product', $cart->id)}}">{{$cart->name}}</a></h3>
-                                            <h4 class="product-price"><span class="qty"> {{$cart->quantity}}</span> {{$cart->price * $cart->quantity}}</h4>
+                                            <h4 class="product-price"><span class="qty"> {{$cart->quantity}}</span> {{number_format($cart->price * $cart->quantity)}}</h4>
                                         </div>
                                         <form action="{{route('cart_remove', $cart->catId)}}" method="post">
                                             @csrf
@@ -113,7 +113,7 @@
                                     foreach($provider::show() as $cart) {
                                     $total = ($cart->price * $cart->quantity);
                                     }
-                                    echo "<h5>SUBTOTAL: ".$total."</h5>";
+                                    echo "<h5>SUBTOTAL: ".number_format($total)."</h5>";
                                     @endphp
 
                                 </div>

@@ -83,11 +83,11 @@
                                         <h6 style="display: inline">{{$prod->name}}</h6>
                                     </a>
                                 </td>
-                                <td class="price"><span>{{$prod->price}}</span></td>
+                                <td class="price"><span>{{number_format($prod->price)}}</span></td>
                                 <td class="qty">
                                     <span>{{$prod->pivot->quantity}}</span>
                                 </td>
-                                <td class="total_price"><span>{{$order->total}}</span></td>
+                                <td class="total_price"><span>{{number_format($order->total)}}</span></td>
                             </tr>
                             @empty
                             <div class="col-xs-12 text-center">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\Cart;
+use App\Product;
 use Auth;
 
 class OrderController extends Controller
@@ -56,8 +57,8 @@ class OrderController extends Controller
         if (empty(Auth::user())) {
             $session_id = session()->get('_token');
         } else {
-            $session_id = Auth::user()->id;
-            $order->user_id - $session_id;
+            $session_id = (string) Auth::user()->id;
+            $order->user_id = Auth::user()->id;
         }
         $carts = Cart::where('session_id', '=', $session_id)->get();
 

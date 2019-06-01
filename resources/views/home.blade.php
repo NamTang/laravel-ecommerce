@@ -144,7 +144,7 @@
                                     <div class="product-body">
                                         <p class="product-category">{{$prod->catId}}</p>
                                         <h3 class="product-name"><a href="{{route('show_product', $prod->id)}}">{{$prod->name}}</a></h3>
-                                        <h4 class="product-price">{{$prod->price}}</h4>
+                                        <h4 class="product-price">{{number_format($prod->price)}}</h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
