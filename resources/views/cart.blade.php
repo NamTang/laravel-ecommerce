@@ -31,8 +31,8 @@
     }
 
     .cart_area .update-checkout a:last-child {
-        background-color: #f4f2f8;
-        color: #7a7a7a;
+        background-color: orange;
+        color: white;
         border-color: #f4f2f8;
     }
 </style>

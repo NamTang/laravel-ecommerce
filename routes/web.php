@@ -42,7 +42,7 @@ Route::group(['prefix' => 'cart'], function () {
 // Logged in user routes
 Route::group(['prefix' => 'orders', 'middleware' => 'auth'], function () {
     Route::get('/', 'OrderController@userOrder')->name('user_order');
-    Route::get('/{id}', 'OrderController@oderDetail')->name('order_detail');
+    Route::get('/{id}', 'OrderController@orderDetail')->name('order_detail');
 });
 // End logged in user routes
 

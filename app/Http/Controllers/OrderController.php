@@ -14,6 +14,19 @@ class OrderController extends Controller
         return view("checkout");
     }
 
+    public function orderDetail($id)
+    {
+        $order = Order::find($id);
+        $total = 0;
+        $order->product_name = $order->products[0]->name;
+        foreach ($order->products as $prod) {
+            $total = $total +  ($prod->price * $prod->pivot->quantity);
+        }
+        $order->total = $total;
+
+        return view('order_detail', ['order'=> $order]);
+    }
+
     public function userOrder()
     {
         $orders;
@@ -52,9 +65,10 @@ class OrderController extends Controller
         $order->save();
         foreach ($carts as $c) {
             $order->products()->attach([$c->product_id => ["quantity" => $c->qty]]);
+            Product::find($c->product_id)->decrement('quantity', $c->qty);
             Cart::find($c->id)->delete();
         }
 
-        return back();
+        return redirect()->route('order_detail', $order->id);
     }
 }
