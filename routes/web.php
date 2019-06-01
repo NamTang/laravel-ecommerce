@@ -16,6 +16,11 @@ Route::get('/', 'HomeController@index')->name('root');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/product/{id}', 'ProductController@show')->name('show_product');
 
+Route::group(['prefix' => 'checkout'], function () {
+    Route::get('/', 'OrderController@index')->name('checkout');
+    Route::post('/', 'OrderController@store')->name('checkout_post');
+});
+
 Route::group(['prefix' => 'store'], function () {
     Route::get('/', 'ProductController@showList')->name('show_store');
     Route::get('/{id}', 'ProductController@showListByCategoryId')->name('show_store_by_category');
@@ -28,6 +33,7 @@ Route::group(['prefix' => 'cart'], function () {
     Route::get('/show', 'CartController@show')->name('cart_show');
     Route::post('/add/{product_id}', 'CartController@add')->name('cart_add');
     Route::post('/remove/{id}', 'CartController@destroy')->name('cart_remove');
+    Route::post('/update', 'CartController@update')->name('cart_update');
 });
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckPermission'], function () {

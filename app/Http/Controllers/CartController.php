@@ -17,7 +17,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('cart', ["carts" => $this->show()]);
     }
 
     /**
@@ -94,6 +95,7 @@ class CartController extends Controller
             $p->catId = $value->id;
             $prods->push($p);
         }
+
         return $prods;
     }
 
@@ -115,9 +117,15 @@ class CartController extends Controller
      * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
+    public function update(Request $request)
     {
-        //
+      foreach ($request->cartId as $key => $id) {
+          $cart = Cart::find($id);
+          $cart->qty = $request->quantity[$key];
+          $cart->save();
+      }
+
+      return redirect("checkout");
     }
 
     /**

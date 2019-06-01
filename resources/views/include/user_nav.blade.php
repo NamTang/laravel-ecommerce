@@ -61,7 +61,7 @@
                     <div class="header-search">
                         <form action="{{route('show_store')}}" method="get">
                             <select class="input-select" name="catId">
-                                @foreach($cats as $c)
+                                @foreach(App\ProductKind::get() as $c)
                                 <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach
                             </select>
@@ -113,8 +113,8 @@
 
                                     </div>
                                     <div class="cart-btns">
-                                        <a href="#">View Cart</a>
-                                        <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="{{route('cart')}}">View Cart</a>
+                                        <a href="{{route('checkout')}}">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +149,7 @@
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
                 <li class="active"><a href="{{route('home')}}">Home</a></li>
-                @foreach ($cats as $cat)
+                @foreach (App\ProductKind::get() as $cat)
                 <li><a href="{{route('show_store_by_category', $cat->id)}}">{{$cat->name}}</a></li>
                 @endforeach
             </ul>
