@@ -15,7 +15,7 @@
                     </div>
                     <div class="shop-body">
                         <h3>Laptop<br>Collection</h3>
-                        <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{route('show_store_by_category', 1)}}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="shop-body">
                         <h3>Accessories<br>Collection</h3>
-                        <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{route('show_store_by_category', 4)}}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="shop-body">
                         <h3>Cameras<br>Collection</h3>
-                        <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{route('show_store_by_category', 3)}}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -161,9 +161,9 @@
                                     </div>
                                 </div>
                                 @empty
-                                <div class="col-xs-12">
+                                <div class="col-xs-12 text-center">
                                     <div class="empty-cart">
-                                        <img src="{{asset('/icons/box-256.png')}}"></img>
+                                        <img src="{{asset('/icon/box-256.png')}}"></img>
                                         <p class="message">Không có sản phẩm nào.</p>
                                     </div>
                                 </div>

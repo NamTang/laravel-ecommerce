@@ -6,6 +6,7 @@ use App\Product;
 use App\ProductKind;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
 {
@@ -97,13 +98,24 @@ class ProductController extends Controller
         return view("product", ["prod" => $prod, "cats" => $cats, "related" => $related, "cat" => $cat]);
     }
 
-    public function showList()
+    public function showList(Request $request)
     {
+        $value = $request->search;
+        $id = $request->catId;
         $cats = ProductKind::get();
         $prods;
-        if (!empty($cats)) {
-            $prods = Product::where('catId', '=', ProductKind::first()->id)->paginate(20);
+        if (!empty($value)) {
+            $where = [
+              ['catId', '=', $id],
+              ['name', 'LIKE', '%' . $value . '%']
+            ];
+            $prods = Product::where($where)->paginate(20);
+        } else {
+            if (!empty($cats)) {
+                $prods = Product::where('catId', '=', ProductKind::first()->id)->paginate(20);
+            }
         }
+
         return view("store", ["prods" => $prods, "cats" => $cats]);
     }
 
@@ -111,6 +123,7 @@ class ProductController extends Controller
     {
         $cats = ProductKind::get();
         $prods = Product::where('catId', '=', $id)->paginate(20);
+
         return view("store", ["prods" => $prods, "cats" => $cats]);
     }
 

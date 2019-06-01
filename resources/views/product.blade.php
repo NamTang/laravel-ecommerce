@@ -37,16 +37,16 @@
                     <p style="padding-top: 15px;">{{$prod->shortDescription}}</p>
 
                     <div class="add-to-cart">
-                        <div class="qty-label">
-                            Qty
-                            <div class="input-number">
-                                <input type="number">
-                                <span class="qty-up">+</span>
-                                <span class="qty-down">-</span>
-                            </div>
-                        </div>
                         <form action="{{route('cart_add', $prod->id)}}" method="post">
                             @csrf
+                            <div class="qty-label">
+                                Qty
+                                <div class="input-number">
+                                    <input type="number" name="quantity" required>
+                                    <span class="qty-up">+</span>
+                                    <span class="qty-down">-</span>
+                                </div>
+                            </div>
                             <button class="add-to-cart-btn" type="submit"><i class="fa fa-shopping-cart"></i> add to cart</button>
                         </form>
                     </div>
@@ -212,15 +212,15 @@
                     <div class="add-to-cart">
                         <form action="{{route('cart_add', $p->id)}}" method="post">
                             @csrf
-                            <button class="add-to-cart-btn"  type="submit"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                            <button class="add-to-cart-btn" type="submit"><i class="fa fa-shopping-cart"></i> add to cart</button>
                         </form>
                     </div>
                 </div>
             </div>
             @empty
-            <div class="col-xs-12">
+            <div class="col-xs-12 text-center">
                 <div class="empty-cart">
-                    <img src="{{asset('/icons/box-256.png')}}"></img>
+                    <img src="{{asset('/icon/box-256.png')}}"></img>
                     <p class="message">Không có sản phẩm nào.</p>
                 </div>
             </div>

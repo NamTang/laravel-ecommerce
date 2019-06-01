@@ -33,9 +33,9 @@
                     </div>
                     <!-- /product -->
                     @empty
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 text-center">
                         <div class="empty-cart">
-                            <img src="{{asset('/icons/box-256.png')}}"></img>
+                            <img src="{{asset('/icon/box-256.png')}}"></img>
                             <p class="message">Không có sản phẩm nào.</p>
                         </div>
                     </div>

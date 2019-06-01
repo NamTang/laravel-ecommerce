@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Product;
-use Request;
+use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Collection;
 
@@ -31,7 +31,7 @@ class CartController extends Controller
     }
 
 
-    public function add($product_id)
+    public function add($product_id, Request $request)
     {
         // For Identification Purpose
         $session_id = empty(Auth::user()) ? session()->get('_token') : Auth::user()->id;
@@ -43,16 +43,15 @@ class CartController extends Controller
         }
 
         if (Cart::where('session_id', '=', $session_id)->exists()) {
-
           //CHeck whether product exist if yes increase quantity
-            $entry = Cart::where([ 'session_id' => $session_id, 'product_id' => $product_id ])->increment('qty', 1);
+            $entry = Cart::where([ 'session_id' => $session_id, 'product_id' => $product_id ])->increment('qty', empty($request->quantity) ? 1 : $request->quantity);
             if (! $entry) {
                 $cart = new Cart;
                 $cart->session_id   = $session_id;
                 $cart->product_id   = $product_id;
                 $cart->product_name = $product->name;
                 $cart->price        = $product->price;
-                $cart->qty          = 1;
+                $cart->qty          = empty($request->quantity) ? 1 : $request->quantity;
                 $cart->save();
             }
         } else {
@@ -61,7 +60,7 @@ class CartController extends Controller
             $cart->product_id   = $product_id;
             $cart->product_name = $product->name;
             $cart->price        = $product->price;
-            $cart->qty          = 1;
+            $cart->qty          = empty($request->quantity) ? 1 : $request->quantity;
             $cart->save();
         }
 

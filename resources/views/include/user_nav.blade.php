@@ -59,14 +59,14 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form>
-                            <select class="input-select">
+                        <form action="{{route('show_store')}}" method="get">
+                            <select class="input-select" name="catId">
                                 @foreach($cats as $c)
                                 <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach
                             </select>
-                            <input class="input" placeholder="Search here">
-                            <button class="search-btn">Search</button>
+                            <input class="input" name="search" placeholder="Search here">
+                            <button class="search-btn" type="submit">Search</button>
                         </form>
                     </div>
                 </div>
